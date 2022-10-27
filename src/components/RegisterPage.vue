@@ -27,10 +27,10 @@
         <label for="licenceNo"><b>Enter your Licence Number</b></label>
         <input type="text" placeholder="Enter No" name="uname" required />
         <label for="emailID"><b>Enter associated Email ID</b></label>
-        <input id = "emailID" type="text" placeholder="Enter email" name="email" required />
+        <input id = "emailID" type="email" placeholder="Enter email" name="email" required />
       </div>
       <div class="pharmacy hospital doctor patient">
-        <button id="getOTP" type="button" @click="sendOtp('getOTP')">
+        <button id="getOTP" type="button" @click="sendEmail()">
           Get O.T.P
         </button>
       </div>
@@ -60,11 +60,51 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
 export default {
   name: "RegisterPage",
   props: {},
   methods: {
-    show: function (id) {
+    
+    sendEmail: function () {
+      
+      var phone = document.getElementById("phoneNo").value;
+      var email = document.getElementById("emailID").value;
+      if(!(phone.length > 0 || email.length > 0)) {
+        alert("Please enter phone number or email ID");
+            return;
+      }
+      emailjs.init('86UT13kN15Rcf4Sgo');
+      try {
+        var templateParams = {
+          to_email: email,
+          message: "Your OTP is "
+        };
+        emailjs.send("service_71ouhg8", "template_o5k4ptm", templateParams);
+        
+      } catch(error) {
+          console.log({error})
+      }
+      var a = document.getElementsByClassName("afterOTP");
+      console.log(a);
+      for (var i = 0; i<a.length; i++) {
+        a[i].style.display = "block";
+      }
+
+      var x = document.getElementById("getOTP");
+      x.disabled = true;
+      x.innerHTML = "OTP Sent";
+      setTimeout(function () {
+        x.disabled = false;
+        x.innerHTML = "Get O.T.P";
+      }, 30000);
+
+
+
+
+
+    }
+    ,show: function (id) {
         var x = document.getElementById(id).value;
         if(x == "doctor" || x == "patient"){
             var toHide = document.getElementsByClassName("pharmacy hospital");
@@ -91,27 +131,7 @@ export default {
       
       //   return "Welcome to this tutorial on " + this.name + " - " + this.topic;
     },
-    sendOtp: function (id) {
-        var phone = document.getElementById("phoneNo").value;
-        var email = document.getElementById("emailID").value;
-        if(!(phone.length > 0 || email.length > 0)) {
-            alert("Please enter phone number or email ID");
-            return;
-        }
-      var a = document.getElementsByClassName("afterOTP");
-      console.log(a);
-      for (var i = 0; i<a.length; i++) {
-        a[i].style.display = "block";
-      }
-
-      var x = document.getElementById(id);
-      x.disabled = true;
-      x.innerHTML = "OTP Sent";
-      setTimeout(function () {
-        x.disabled = false;
-        x.innerHTML = "Get O.T.P";
-      }, 30000);
-    },
+  
       
     },
 };
