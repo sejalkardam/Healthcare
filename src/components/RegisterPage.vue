@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate">
       <div class="imgcontainer">
         <img
           src=".././assets/pharm-difficult-logo.png"
@@ -10,26 +10,43 @@
       </div>
 
       <label for="stakeHolder"><b>Register as</b></label>
-      <select name="stakeHolder" id="stakeHolderReg" @change="show('stakeHolderReg')">
+      <select
+        name="stakeHolder"
+        id="stakeHolderReg"
+        @change="show('stakeHolderReg')"
+      >
         <option value="none">--Select--</option>
         <option value="pharmacy">Pharmacy</option>
         <option value="doctor">Doctor</option>
         <option value="patient">Patient</option>
         <option value="hospital">Hospital</option>
+        <option value="insurance">Insurance Company</option>
       </select>
 
       <div class="doctor patient">
         <label for="phoneNo"><b>Enter your Phone Number</b></label>
-        <input id = "phoneNo" type="text" placeholder="Enter phone" name="uname" required />
+        <input
+          id="phoneNo"
+          type="text"
+          placeholder="Enter phone"
+          name="uname"
+          required
+        />
       </div>
 
-      <div class="pharmacy hospital">
+      <div class="pharmacy hospital insurance">
         <label for="licenceNo"><b>Enter your Licence Number</b></label>
-        <input type="text" placeholder="Enter No" name="uname" required />
+        <input id="regNo" type="text" placeholder="Enter No" name="uname" required />
         <label for="emailID"><b>Enter associated Email ID</b></label>
-        <input id = "emailID" type="email" placeholder="Enter email" name="email" required />
+        <input
+          id="emailID"
+          type="email"
+          placeholder="Enter email"
+          name="email"
+          required
+        />
       </div>
-      <div class="pharmacy hospital doctor patient">
+      <div class="pharmacy hospital doctor patient insurance">
         <button id="getOTP" type="button" @click="sendEmail()">
           Get O.T.P
         </button>
@@ -37,9 +54,16 @@
 
       <div class="afterOTP">
         <label for="otp"><b>Enter OTP</b></label>
-        <input type="text" placeholder="Enter OTP" name="otp" required />
+        <input
+          id="otp"
+          type="text"
+          placeholder="Enter OTP"
+          name="otp"
+          required
+        />
         <label for="psw"><b>Set a Password</b></label>
         <input
+          id="psw"
           type="password"
           placeholder="Enter Password"
           name="psw"
@@ -47,47 +71,57 @@
         />
         <label for="psw"><b>Repeat Password</b></label>
         <input
+          id="psw-repeat"
           type="password"
           placeholder="Re-enter Password"
           name="psw"
           required
         />
       </div>
-      <button type="submit">Register</button>
-
+      <button type="submit" @click="registerStakeHolder()">Register</button>
     </form>
   </div>
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
 export default {
   name: "RegisterPage",
   props: {},
+  data: function () {
+    return {
+      currOtp: null,
+    };
+  },
   methods: {
-    
     sendEmail: function () {
-      
+      var otp = Math.random() * 10000;
+      this.$data.currOtp = Math.floor(otp);
+      otp = this.$data.currOtp;
       var phone = document.getElementById("phoneNo").value;
       var email = document.getElementById("emailID").value;
-      if(!(phone.length > 0 || email.length > 0)) {
+      if (!(phone.length > 0 || email.length > 0)) {
         alert("Please enter phone number or email ID");
-            return;
+        return;
       }
-      emailjs.init('86UT13kN15Rcf4Sgo');
-      try {
-        var templateParams = {
-          to_email: email,
-          message: "Your OTP is "
-        };
-        emailjs.send("service_71ouhg8", "template_o5k4ptm", templateParams);
-        
-      } catch(error) {
-          console.log({error})
+      if (email.length > 0) {
+        emailjs.init("86UT13kN15Rcf4Sgo");
+        try {
+          var templateParams = {
+            to_email: email,
+            message: "Your OTP is " + otp,
+          };
+          emailjs.send("service_71ouhg8", "template_o5k4ptm", templateParams);
+        } catch (error) {
+          console.log({ error });
+        }
+      } else {
+        // Send OTP on mobile
       }
+
       var a = document.getElementsByClassName("afterOTP");
       console.log(a);
-      for (var i = 0; i<a.length; i++) {
+      for (var i = 0; i < a.length; i++) {
         a[i].style.display = "block";
       }
 
@@ -98,42 +132,66 @@ export default {
         x.disabled = false;
         x.innerHTML = "Get O.T.P";
       }, 30000);
-
-
-
-
-
-    }
-    ,show: function (id) {
-        var x = document.getElementById(id).value;
-        if(x == "doctor" || x == "patient"){
-            var toHide = document.getElementsByClassName("pharmacy hospital");
-            for (var i = 0; i < toHide.length; i++) {
-                toHide[i].style.display = "none";
-            }
-            var toShow = document.getElementsByClassName("doctor patient");
-            for (i = 0; i < toShow.length; i++) {
-                toShow[i].style.display = "block";
-            }
+    },
+    show: function (id) {
+      var x = document.getElementById(id).value;
+      if (x == "doctor" || x == "patient") {
+        var toHide = document.getElementsByClassName("pharmacy hospital insurance");
+        for (var i = 0; i < toHide.length; i++) {
+          toHide[i].style.display = "none";
         }
-        else if(x == "pharmacy" || x == "hospital"){
-            toHide = document.getElementsByClassName("doctor patient");
-            for (i = 0; i < toHide.length; i++) {
-                toHide[i].style.display = "none";
-            }
-            toShow = document.getElementsByClassName("pharmacy hospital");
-            for (i = 0; i < toShow.length; i++) {
-                toShow[i].style.display = "block";
-            }
-
+        var toShow = document.getElementsByClassName("doctor patient");
+        for (i = 0; i < toShow.length; i++) {
+          toShow[i].style.display = "block";
         }
-    
-      
+      } else if (x == "pharmacy" || x == "hospital" || x == "insurance") {
+        toHide = document.getElementsByClassName("doctor patient");
+        for (i = 0; i < toHide.length; i++) {
+          toHide[i].style.display = "none";
+        }
+        toShow = document.getElementsByClassName("pharmacy hospital insurance");
+        for (i = 0; i < toShow.length; i++) {
+          toShow[i].style.display = "block";
+        }
+      }
+
       //   return "Welcome to this tutorial on " + this.name + " - " + this.topic;
     },
-  
-      
+
+    registerStakeHolder: function () {
+      console.log(this.$data.currOtp);
+      var stakeHolder = document.getElementById("stakeHolderReg").value;
+      var password = document.getElementById("psw").value;
+      var passwordRepeat = document.getElementById("psw-repeat").value;
+      var enteredOTP = document.getElementById("otp").value;
+      if (password != passwordRepeat) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      if (enteredOTP != this.$data.currOtp) {
+        alert("OTP is incorrect");
+        return;
+      }
+      if (stakeHolder == "none") {
+        alert("Please select a stakeholder");
+        return;
+      } else if (stakeHolder == "doctor" || stakeHolder == "patient") {
+        var phone = document.getElementById("phoneNo").value;
+        if (phone.length == 0) {
+          alert("Please enter phone number");
+          return;
+        }
+      }else if(stakeHolder == "pharmacy" || stakeHolder == "hospital" || stakeHolder == "insurance"){
+        var email = document.getElementById("emailID").value;
+        var regNo = document.getElementById("regNo").value;
+        if (email.length == 0 || regNo.length == 0) {
+          alert("Please enter email ID and Registration number");
+          return;
+        }
+      }
     },
+  },
 };
 </script>
 
@@ -144,6 +202,7 @@ body {
 
 /* Full-width input fields */
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 12px 20px;
@@ -259,25 +318,25 @@ span.psw {
     width: 100%;
   }
 }
-.afterOTP{
+.afterOTP {
   display: none;
 }
 
-.doctor{
+.doctor {
   display: none;
 }
 
-.hospital{
+.hospital {
   display: none;
 }
 
-.pharmacy{
+.pharmacy {
   display: none;
 }
-
-.doctor{
+.insurance{
   display: none;
 }
-
-
+.doctor {
+  display: none;
+}
 </style>
