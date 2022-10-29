@@ -1,4 +1,16 @@
 <template>
+  <div class="navbar">
+        <a href="/" >Home</a>
+        <a href="/RegisterPage" class="active">Register</a>
+        <a href="/LoginPage">Login</a>
+        <a href="/about">About Us</a>
+        <a href="/findingDoc">Doctor</a>
+        <a href="/findingHosp">Hospital</a>
+        <a href="/findingPharmacy">Pharmacy</a>
+        <a href="/findingInsurance" >Insurance</a>
+        <a href="/ProfilePatient">Profile</a>
+        
+   </div>
   <div>
     <form class="modal-content animate">
       <div class="imgcontainer">

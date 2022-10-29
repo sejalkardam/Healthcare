@@ -2,10 +2,14 @@ import { createWebHistory, createRouter } from "vue-router"
 import HomePage from "@/components/HomePage.vue"
 import LoginPage from "@/components/LoginPage.vue"
 import RegisterPage from "@/components/RegisterPage.vue"
-import FindADocPage from "@/components/FindADocPage.vue"
+import findingDoc from "@/components/findingDoc.vue"
 import ProfilePatient from "@/components/ProfilePatient.vue"
 import paymentPage from "@/components/paymentPage.vue"
 import about from "@/components/about.vue"
+import findingHosp from "@/components/findingHosp.vue"
+import findingPharmacy from "@/components/findingPharmacy.vue"
+import findingInsurance from "@/components/findingInsurance.vue"
+
 const routes = [
     {
         path: "/",
@@ -19,10 +23,26 @@ const routes = [
   },
 
   {
-    path: '/FindADocPage',
-    name: "FindADocPage",
-    component: FindADocPage,
+    path: '/findingDoc',
+    name: "findingDoc",
+    component: findingDoc,
   },
+  {
+    path: '/findingHosp',
+    name: "findingHosp",
+    component: findingHosp,
+  },
+  {
+    path: '/findingInsurance',
+    name: "findingInsurance",
+    component: findingInsurance,
+  },
+  {
+    path: '/findingPharmacy',
+    name: "findingPharmacy",
+    component: findingPharmacy,
+  },
+  
 
   {
     path: '/ProfilePatient',

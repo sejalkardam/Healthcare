@@ -1,9 +1,15 @@
 <template>
-    <div class="navbar">
-     <a href="#home">Home</a>
-     <a href="#Profile"  class="active">Profile</a>
-     <a href="#contact">Contact</a>
-   </div>
+   <div class="navbar">
+      <a href="/" >Home</a>
+        <a href="/RegisterPage">Register</a>
+        <a href="/LoginPage"  class="active">Login</a>
+        <a href="/about">About Us</a>
+        <a href="/findingDoc">Doctor</a>
+        <a href="/findingHosp">Hospital</a>
+        <a href="/findingPharmacy">Pharmacy</a>
+        <a href="/findingInsurance">Insurance</a>
+        <a href="/ProfilePatient" class="active">Profile</a>
+    </div>
    <div class=start><h1>PROFILE PAGE</h1></div>
    <div>
        <div class="prof1">

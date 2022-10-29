@@ -5,10 +5,10 @@
         <a href="/RegisterPage">Register</a>
         <a href="/LoginPage"  class="active">Login</a>
         <a href="/about">About Us</a>
-        <a href="/FindADocPage">Doctor</a>
-        <a href="/FindHosp">Hospital</a>
-        <a href="/FindPharm">Pharmacy</a>
-        <a href="/FindInsurance">Insurance</a>
+        <a href="/findingDoc">Doctor</a>
+        <a href="/findingHosp">Hospital</a>
+        <a href="/findingPharmacy">Pharmacy</a>
+        <a href="/findingInsurance">Insurance</a>
         <a href="/ProfilePatient">Profile</a>
     </div>
     <h2 id="name">Pharm Difficult</h2>
