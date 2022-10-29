@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="navbar">
         <a href="/" >Home</a>
         <a href="/RegisterPage">Register</a>
@@ -14,27 +14,30 @@
   <div class="doctor">
     <div class="location">
         <label for="doctor"><b>Search Location </b></label>
-        <select name="location" id="loaction" @change="show('location')">
+        <select name="location" id="location" @change="show('location')">
          
-            <option v-for="location in a" :key="location">{{location}}</option>
+            <option v-for="i in a" :key="i.location">{{i.location}}</option>
                 </select>
    
     </div>
     <div class="name">
         <label for="doctor"><b>Search Name </b></label>
-        <select class="form-control" name="name">
-            <option v-for="name in a" :key="name">{{name}}</option>
+        <select  name="name" id="name" @change="show('name')">
+            <option v-for="i in a" :key="i.name">{{i.name}}</option>
                 </select>
     
     </div>
     <div class="speciality">
         <label for="doctor"><b>Search Type </b></label>
-        <select class="form-control" name="speciality">
-            <option v-for="speciality in a" :key="speciality">{{speciality}}</option>
+        <select name="speciality" id="speciality" @change="show('type')" >
+            <option v-for="i in a" :key="i.speciality">{{i.speciality}}</option>
                 </select>
     
 
     </div>
+     <button type="button" @click="search()">
+        Search
+     </button>
   </div> 
 </template>
 <script>
@@ -43,6 +46,7 @@ export default {
     props: {},
     data: function () {
       return {
+        a: [{name:'Naman', location:"Delhi"}, {name:'Sejal', location:"Nigeria"},{name:'Aanya', location:" South Delhi"}],
         isActive:false,
       };
     },
@@ -53,14 +57,25 @@ export default {
           // var location = 
           // var speciality = 
   
-          var params = {"stakeholder":"doctor", "name": "none", "location": "Rohini", "speciality":"none"};
-          params = JSON.stringify(params)
-          var a = await UserDataService.retrieveUser(params);
-          console.log(a.data);
+          // var params = {"stakeholder":"doctor", "name": "none", "location": "none", "speciality":"none"};
+          // params = JSON.stringify(params)
+          // var a = await UserDataService.retrieveUser(params);
+          this.data.a = [{name:'Naman', location:"Delhi"}, {name:'Sejal', location:"Nigeria"}];
+          // console.log(a.data);
       },
 
       show: function(id){
           var x= document.getElementById(id).value;
+          console.log(x);
+      },
+
+      search: function(){
+        var locationToFind=document.getElementById("location").options[document.getElementById("location").selectedIndex].innerHTML;
+        var nameToFind=document.getElementById("name").options[document.getElementById("name").selectedIndex].innerHTML;
+        var specialityToFind=document.getElementById("speciality").options[document.getElementById("speciality").selectedIndex].innerHTML;
+        console.log(locationToFind);
+        console.log(nameToFind);
+        console.log(specialityToFind);
       }
     },
 
@@ -135,4 +150,4 @@ button:hover {
 
 
 
-</style> -->
+</style>
