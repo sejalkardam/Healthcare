@@ -2,7 +2,7 @@
    <div class="navbar">
       <a href="/" >Home</a>
         <a href="/RegisterPage">Register</a>
-        <a href="/LoginPage"  class="active">Login</a>
+        <a href="/LoginPage">Login</a>
         <a href="/about">About Us</a>
         <a href="/findingDoc">Doctor</a>
         <a href="/findingHosp">Hospital</a>
