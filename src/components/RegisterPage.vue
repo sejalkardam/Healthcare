@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div class="navbar">
+    <a href="/" >Home</a>
+        <a href="/RegisterPage" class="active">Register</a>
+        <a href="/LoginPage" >Login</a>
+        <a href="/about">About Us</a>
+        <a href="/FindADocPage">Doctor</a>
+        <a href="/FindHosp">Hospital</a>
+        <a href="/FindPharm">Pharmacy</a>
+        <a href="/FindInsurance">Insurance</a>
+        <a href="/ProfilePatient">Profile</a>
+        </div>
     <form class="modal-content animate" action="/action_page.php" method="post">
       <div class="imgcontainer">
         <img
@@ -140,6 +151,36 @@ export default {
 <style scoped>
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.navbar a.active {
+  background-color: #05c2f7;
+  color: white;
 }
 
 /* Full-width input fields */

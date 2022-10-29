@@ -1,18 +1,24 @@
 <template>
   <div class="login">
     <div class="navbar">
-      <a href="#home" class="active">Home</a>
-      <a href="#login">Login</a>
-      <a href="#contact">Contact</a>
+      <a href="/" >Home</a>
+        <a href="/RegisterPage">Register</a>
+        <a href="/LoginPage"  class="active">Login</a>
+        <a href="/about">About Us</a>
+        <a href="/FindADocPage">Doctor</a>
+        <a href="/FindHosp">Hospital</a>
+        <a href="/FindPharm">Pharmacy</a>
+        <a href="/FindInsurance">Insurance</a>
+        <a href="/ProfilePatient">Profile</a>
     </div>
     <h2 id="name">Pharm Difficult</h2>
 
-    <button
+    <!-- <button
       onclick="document.getElementById('id01').style.display='block'"
       style="width: auto"
     >
       Login
-    </button>
+    </button> -->
 
     <div id="id01" class="modal">
       <form
@@ -136,6 +142,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#id01{
+  display: block;
+}
 * {
   margin: 0;
   padding: 0;
