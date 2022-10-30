@@ -74,6 +74,11 @@
         console.log(locationToFind);
         console.log(nameToFind);
         console.log(specialityToFind);
+        localStorage.setItem('dict',JSON.stringify(this.a));
+        const arr=JSON.parse(localStorage.getItem('dict'))
+        console.log(arr);
+        //router.push("/displayCatalog");
+        this.$router.push({path: '/displayCatalog'})
       },
       },
   

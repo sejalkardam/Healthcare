@@ -9,12 +9,19 @@ import about from "@/components/about.vue"
 import findingHosp from "@/components/findingHosp.vue"
 import findingPharmacy from "@/components/findingPharmacy.vue"
 import findingInsurance from "@/components/findingInsurance.vue"
+import displayCatalog from "@/components/displayCatalog.vue"
+
 
 const routes = [
     {
         path: "/",
         name: "HomePage",
         component: HomePage,
+      },
+      {
+        path: "/displayCatalog",
+        name: "displayCatalog",
+        component: displayCatalog,
       },
   {
     path: "/LoginPage",

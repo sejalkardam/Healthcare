@@ -65,10 +65,15 @@
       search: function(){
         var locationToFind=document.getElementById("location").options[document.getElementById("location").selectedIndex].innerHTML;
         var nameToFind=document.getElementById("name").options[document.getElementById("name").selectedIndex].innerHTML;
-        var specialityToFind=document.getElementById("speciality").options[document.getElementById("speciality").selectedIndex].innerHTML;
+        // var specialityToFind=document.getElementById("speciality").options[document.getElementById("speciality").selectedIndex].innerHTML;
         console.log(locationToFind);
         console.log(nameToFind);
-        console.log(specialityToFind);
+     //   console.log(specialityToFind);
+        localStorage.setItem('dict',JSON.stringify(this.a));
+        const arr=JSON.parse(localStorage.getItem('dict'))
+        console.log(arr);
+        //router.push("/displayCatalog");
+        this.$router.push({path: '/displayCatalog'})
       }
       },
   

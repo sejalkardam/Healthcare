@@ -1,3 +1,4 @@
+
 <template>
   <div class="navbar">
         <a href="/" >Home</a>
@@ -38,9 +39,12 @@
      <button type="button" @click="search()">
         Search
      </button>
+     <!-- <a href="/displayCatalog">Display catalog</a> -->
   </div> 
 </template>
 <script>
+//import { json } from 'body-parser';
+
 export default {
     name: "findingDoc",
     props: {},
@@ -48,6 +52,7 @@ export default {
       return {
         a: [{name:'Naman', location:"Delhi"}, {name:'Sejal', location:"Nigeria"},{name:'Aanya', location:" South Delhi"}],
         isActive:false,
+        
       };
     },
     methods: {
@@ -76,7 +81,17 @@ export default {
         console.log(locationToFind);
         console.log(nameToFind);
         console.log(specialityToFind);
-      }
+        localStorage.setItem('dict',JSON.stringify(this.a));
+        const arr=JSON.parse(localStorage.getItem('dict'))
+        console.log(arr);
+        //router.push("/displayCatalog");
+        this.$router.push({path: '/displayCatalog'})
+      },
+     
+      // storage: function(){
+
+      // }
+
     },
 
 }
