@@ -1,4 +1,4 @@
-# sampleapp
+# Healthcare
 
 ## Project setup
 ```
